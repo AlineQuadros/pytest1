@@ -24,7 +24,7 @@ movielens_tag = movielens_tag.drop(columns='timestamp')
 movielens_tag = movielens_tag.drop(columns='userId')
 
 # drop NAs  
-movielens_tag = movielens_tag=movielens_tag.dropna()
+movielens_tag = movielens_tag.dropna()
 movielens_tag.nunique()
 
 
@@ -100,7 +100,7 @@ nodes_pos["tag"] = tags_positive.tag1.unique()
 
 
 #create dataframe of EDGES
-nodes_pos
+edges_pos
 
 #! ========================  explore GENRES ============================
 #! the aim is to understand the flavour of each movie
