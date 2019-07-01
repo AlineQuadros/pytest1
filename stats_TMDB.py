@@ -15,6 +15,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split 
 from sklearn import metrics
 from sklearn import svm
+import numpy as np
+from random import randint
 
 #!  import datasets TMDB
 tmdb_movies = pd.read_csv('tmdb-5000-movie-dataset/tmdb5000movies.csv', sep=',')
@@ -78,7 +80,7 @@ ready100.score_cat[ready100.score_cat==1] = 0
 ready100.score_cat[ready100.score_cat==9] = 10
 
 # classification tree        
-for j in possible_y:
+#for j in possible_y:
     y = ready100[possible_y[j]] # Target variable
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, stratify=y, random_state=1) 
     clf = DecisionTreeClassifier(criterion="entropy", max_depth=3)
@@ -106,3 +108,17 @@ print("Report:",metrics.classification_report(y_test, y_pred))
 
 
 # -------------predict SCORES of new movie plot -------------------
+
+# find keywords from negative list that are in the top_100
+tp = pd.DataFrame(nodes_neg.unique())
+tp.columns = ['keyword']
+subi = tp.keyword[tp.keyword.isin(top_100key["keyword"])]
+# sort 10 keywords from the list of keywords negatively correlated
+newX = pd.DataFrame()
+newX['100k'] = top_100key['keyword']
+
+k = [randint(0, 100) for p in range(0, 10)]
+
+# 
+for k in tp['keyword']:
+    
