@@ -100,7 +100,7 @@ nodes_pos["tag"] = tags_positive.tag1.unique()
 
 
 #create dataframe of EDGES
-edges_pos
+
 
 #! ========================  explore GENRES ============================
 #! the aim is to understand the flavour of each movie
